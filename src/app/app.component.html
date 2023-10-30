@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <!-- Convertidor de Segundos -->
+            <h1 class="text-center mb-4">Convertidor de Segundos</h1>
+            <form [formGroup]="secondsForm" (ngSubmit)="convertSeconds()" class="mb-3">
+                <div class="mb-3">
+                    <label for="secondsInput" class="form-label">Ingresa segundos</label>
+                    <input type="number" formControlName="inputSeconds" id="inputSeconds" class="form-control" placeholder="Ingresa segundos">
+                    <div *ngIf="secondsForm.get('inputSeconds')?.invalid && secondsForm.get('inputSeconds')?.touched" class="text-danger mt-1">
+                        Por favor, ingresa un número entre 0 y 359999.
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Convertir</button>
+            </form>
+            <div *ngIf="secondsTime" class="alert alert-success text-center">
+                Tiempo: {{ secondsTime }}
+            </div>
+
+            <hr>
+            <!-- Raíz Digital -->
+            <h1 class="text-center mb-4 mt-5">Calculadora de Raíz Digital</h1>
+            <form [formGroup]="digitalRootForm" (ngSubmit)="compute()" class="mb-3">
+                <div class="mb-3">
+                    <label for="digitalRootInput" class="form-label">Ingresa un número</label>
+                    <input type="number" formControlName="digitalRootInput" id="digitalRootInput" class="form-control" placeholder="Ingresa un número para la raíz digital">
+                    <div *ngIf="digitalRootForm.get('digitalRootInput')?.invalid && digitalRootForm.get('digitalRootInput')?.touched" class="text-danger mt-1">
+                        Por favor, ingresa un número válido.
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-block">Calcular</button>
+            </form>
+            <div *ngIf="result !== null" class="alert alert-info text-center">
+                Raíz Digital: {{ result }}
+            </div>
+
+            <hr>
+            <!-- Codigo Morse -->
+            <h2 class="text-center mb-4">Decodificador de Morse</h2>
+            <form [formGroup]="morseForm" (ngSubmit)="decodeBinary()">
+                <div class="mb-3">
+                    <label for="binaryInput" class="form-label">Ingresa código .... . -.-- .--- ..- -.. .</label>
+                    <input type="text" formControlName="binaryInput" id="binaryInput" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-secondary btn-block">Decodificar</button>
+            </form>
+            <div *ngIf="decodedMessage" class="alert alert-info mt-3 text-center">
+                Mensaje: {{ decodedMessage }}
+            </div>
+
+        </div>
+    </div>
+</div>
